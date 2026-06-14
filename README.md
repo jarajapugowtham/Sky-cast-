@@ -17,8 +17,7 @@ A responsive weather application that shows real-time weather data for any city.
 ### 🔗 Live Demo
 [https://sky-cast-gamma-steel.vercel.app](https://sky-cast-gamma-steel.vercel.app)
 
-### 📸 Screenshot
-<img src="screenshot.png" alt="Sky Cast App" />
+
 
 ### 🚀 Run Locally
 1. Clone the repo
