@@ -18,11 +18,3 @@ A responsive weather application that shows real-time weather data for any city.
 [https://sky-cast-gamma-steel.vercel.app](https://sky-cast-gamma-steel.vercel.app)
 
 
-
-### 🚀 Run Locally
-1. Clone the repo
-2. Open `index.html` in browser
-3. Done!
-
----
-Made by Gowtham Jarajapu
