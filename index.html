@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="Sky Cast PRO - Live worldwide weather dashboard"
+  >
+
+  <title>Sky Cast PRO | Live Weather</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       BACKGROUND
+  ========================== -->
+  <div class="background-effects">
+    <div class="orb orb-one"></div>
+    <div class="orb orb-two"></div>
+    <div class="orb orb-three"></div>
+  </div>
+
+
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+  <header class="navbar">
+
+    <div class="brand">
+      <div class="brand-icon">☁️</div>
+
+      <div>
+        <h2>SkyCast</h2>
+        <span>PRO WEATHER</span>
+      </div>
+    </div>
+
+    <nav class="desktop-nav">
+      <button class="nav-link active" data-section="dashboard">
+        Dashboard
+      </button>
+
+      <button class="nav-link" data-section="forecastSection">
+        Forecast
+      </button>
+
+      <button class="nav-link" data-section="airSection">
+        Air Quality
+      </button>
+    </nav>
+
+    <div class="nav-actions">
+
+      <button
+        id="unitBtn"
+        class="icon-btn"
+        title="Change temperature unit"
+      >
+        °C
+      </button>
+
+      <button
+        id="themeBtn"
+        class="icon-btn"
+        title="Change theme"
+      >
+        🌙
+      </button>
+
+      <button
+        id="refreshBtn"
+        class="icon-btn"
+        title="Refresh weather"
+      >
+        ↻
+      </button>
+
+    </div>
+
+  </header>
+
+
+  <!-- =========================
+       MAIN
+  ========================== -->
+  <main class="container">
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+    <section class="hero">
+
+      <div class="hero-badge">
+        <span class="live-dot"></span>
+        LIVE WEATHER INTELLIGENCE
+      </div>
+
+      <h1>
+        Know your sky.
+        <span>Own your day.</span>
+      </h1>
+
+      <p>
+        Real-time weather intelligence for cities around the world.
+      </p>
+
+
+      <!-- SEARCH -->
+      <div class="search-wrapper">
+
+        <div class="search-box">
+
+          <span class="search-icon">⌕</span>
+
+          <input
+            id="searchInput"
+            type="text"
+            placeholder="Search city, country or place..."
+            autocomplete="off"
+          >
+
+          <button id="searchBtn">
+            Search
+          </button>
+
+        </div>
+
+        <div
+          id="searchSuggestions"
+          class="search-suggestions"
+        ></div>
+
+      </div>
+
+
+      <!-- LOCATION -->
+      <button
+        id="locationBtn"
+        class="location-btn"
+      >
+        📍 Use my current location
+      </button>
+
+    </section>
+
+
+    <!-- =========================
+         ERROR
+    ========================== -->
+    <div
+      id="error"
+      class="error-box"
+      role="alert"
+    ></div>
+
+
+    <!-- =========================
+         WEATHER APP
+    ========================== -->
+    <section id="weatherApp">
+
+
+      <!-- =========================
+           DASHBOARD
+      ========================== -->
+      <section id="dashboard" class="dashboard-grid">
+
+
+        <!-- MAIN WEATHER -->
+        <article class="card main-weather-card">
+
+          <div class="card-top">
+
+            <div>
+              <span class="eyebrow">
+                CURRENT WEATHER
+              </span>
+
+              <h2 id="cityName">
+                Your Location
+              </h2>
+
+              <p id="countryName">
+                --
+              </p>
+
+              <p id="currentDate">
+                --
+              </p>
+            </div>
+
+            <button
+              id="favoriteBtn"
+              class="favorite-btn"
+              title="Save location"
+            >
+              ♡
+            </button>
+
+          </div>
+
+
+          <div class="main-weather">
+
+            <div
+              id="weatherIcon"
+              class="weather-icon"
+            >
+              🌤️
+            </div>
+
+            <div class="temperature-area">
+
+              <div class="temperature">
+                <strong id="temperature">
+                  --
+                </strong>
+
+                <span id="temperatureUnit">
+                  °C
+                </span>
+              </div>
+
+              <h3 id="condition">
+                Loading weather...
+              </h3>
+
+              <p id="feelsLike">
+                Feels like --
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="high-low">
+
+            <div>
+              <span>High</span>
+              <strong id="tempMax">--°</strong>
+            </div>
+
+            <div>
+              <span>Low</span>
+              <strong id="tempMin">--°</strong>
+            </div>
+
+          </div>
+
+
+          <div
+            id="weatherInsight"
+            class="weather-insight"
+          >
+            🌤️ Weather insight will appear here.
+          </div>
+
+        </article>
+
+
+        <!-- =========================
+             WEATHER DETAILS
+        ========================== -->
+        <article class="card">
+
+          <div class="section-heading">
+
+            <div>
+              <span class="eyebrow">
+                CONDITIONS
+              </span>
+
+              <h3>
+                Right now
+              </h3>
+            </div>
+
+            <span id="lastUpdated">
+              --
+            </span>
+
+          </div>
+
+
+          <div class="stats-grid">
+
+            <div class="stat-card">
+              <span class="stat-icon">💧</span>
+              <small>Humidity</small>
+              <strong id="humidity">--</strong>
+            </div>
+
+            <div class="stat-card">
+              <span class="stat-icon">💨</span>
+              <small>Wind</small>
+              <strong id="wind">--</strong>
+            </div>
+
+            <div class="stat-card">
+              <span class="stat-icon">🌡️</span>
+              <small>Pressure</small>
+              <strong id="pressure">--</strong>
+            </div>
+
+            <div class="stat-card">
+              <span class="stat-icon">👁️</span>
+              <small>Visibility</small>
+              <strong id="visibility">--</strong>
+            </div>
+
+            <div class="stat-card">
+              <span class="stat-icon">☁️</span>
+              <small>Clouds</small>
+              <strong id="cloudValue">--</strong>
+            </div>
+
+            <div class="stat-card">
+              <span class="stat-icon">🧭</span>
+              <small>Wind Direction</small>
+              <strong id="windDirection">--</strong>
+            </div>
+
+          </div>
+
+        </article>
+
+      </section>
+
+
+      <!-- =========================
+           HOURLY
+      ========================== -->
+      <section class="card section-card">
+
+        <div class="section-heading">
+
+          <div>
+            <span class="eyebrow">
+              WEATHER TIMELINE
+            </span>
+
+            <h3>
+              Upcoming hours
+            </h3>
+          </div>
+
+          <span>
+            Live forecast
+          </span>
+
+        </div>
+
+        <div
+          id="hourlyContainer"
+          class="hourly-container"
+        ></div>
+
+      </section>
+
+
+      <!-- =========================
+           TEMPERATURE CHART
+      ========================== -->
+      <section class="card section-card">
+
+        <div class="section-heading">
+
+          <div>
+            <span class="eyebrow">
+              TEMPERATURE TREND
+            </span>
+
+            <h3>
+              Temperature forecast
+            </h3>
+          </div>
+
+          <span>
+            Next 24 hours
+          </span>
+
+        </div>
+
+        <div class="chart-wrapper">
+
+          <svg
+            id="temperatureChart"
+            viewBox="0 0 900 260"
+            preserveAspectRatio="none"
+          ></svg>
+
+        </div>
+
+        <div
+          id="chartLabels"
+          class="chart-labels"
+        ></div>
+
+      </section>
+
+
+      <!-- =========================
+           FORECAST
+      ========================== -->
+      <section
+        id="forecastSection"
+        class="card section-card"
+      >
+
+        <div class="section-heading">
+
+          <div>
+            <span class="eyebrow">
+              EXTENDED OUTLOOK
+            </span>
+
+            <h3>
+              5-Day Forecast
+            </h3>
+          </div>
+
+          <span>
+            3-hour weather data
+          </span>
+
+        </div>
+
+        <div
+          id="forecastContainer"
+          class="forecast-container"
+        ></div>
+
+      </section>
+
+
+      <!-- =========================
+           WIND + RAIN
+      ========================== -->
+      <section class="two-column">
+
+
+        <!-- WIND -->
+        <article class="card section-card">
+
+          <div class="section-heading">
+
+            <div>
+              <span class="eyebrow">
+                WIND
+              </span>
+
+              <h3>
+                Wind conditions
+              </h3>
+            </div>
+
+          </div>
+
+          <div class="wind-display">
+
+            <div
+              id="windCompass"
+              class="wind-compass"
+            >
+              <span>N</span>
+              <span>E</span>
+              <span>S</span>
+              <span>W</span>
+
+              <div
+                id="windArrow"
+                class="wind-arrow"
+              >
+                ↑
+              </div>
+            </div>
+
+            <div class="wind-info">
+
+              <strong id="windSpeedLarge">
+                --
+              </strong>
+
+              <span>
+                Wind speed
+              </span>
+
+              <strong id="windDirectionLarge">
+                --
+              </strong>
+
+              <span>
+                Direction
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- RAIN -->
+        <article class="card section-card">
+
+          <div class="section-heading">
+
+            <div>
+              <span class="eyebrow">
+                PRECIPITATION
+              </span>
+
+              <h3>
+                Rain information
+              </h3>
+            </div>
+
+          </div>
+
+          <div class="rain-info">
+
+            <div class="rain-icon">
+              🌧️
+            </div>
+
+            <div>
+
+              <strong id="rainAmount">
+                --
+              </strong>
+
+              <span>
+                Expected precipitation
+              </span>
+
+            </div>
+
+          </div>
+
+          <div class="rain-bar">
+
+            <div
+              id="rainProgress"
+              class="rain-progress"
+            ></div>
+
+          </div>
+
+          <p id="rainMessage">
+            Precipitation information will appear here.
+          </p>
+
+        </article>
+
+      </section>
+
+
+      <!-- =========================
+           AIR QUALITY
+      ========================== -->
+      <section
+        id="airSection"
+        class="card section-card"
+      >
+
+        <div class="section-heading">
+
+          <div>
+            <span class="eyebrow">
+              ENVIRONMENT
+            </span>
+
+            <h3>
+              Air Quality
+            </h3>
+          </div>
+
+          <span id="aqiStatus">
+            Loading...
+          </span>
+
+        </div>
+
+
+        <div class="air-quality-grid">
+
+          <div class="aqi-main">
+
+            <div
+              id="aqiValue"
+              class="aqi-number"
+            >
+              --
+            </div>
+
+            <span>
+              AQI
+            </span>
+
+            <strong id="aqiLabel">
+              --
+            </strong>
+
+          </div>
+
+
+          <div class="pollution-grid">
+
+            <div>
+              <small>PM2.5</small>
+              <strong id="pm25">--</strong>
+            </div>
+
+            <div>
+              <small>PM10</small>
+              <strong id="pm10">--</strong>
+            </div>
+
+            <div>
+              <small>CO</small>
+              <strong id="co">--</strong>
+            </div>
+
+            <div>
+              <small>NO₂</small>
+              <strong id="no2">--</strong>
+            </div>
+
+            <div>
+              <small>O₃</small>
+              <strong id="o3">--</strong>
+            </div>
+
+            <div>
+              <small>SO₂</small>
+              <strong id="so2">--</strong>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           SUN TRACKER
+      ========================== -->
+      <section class="two-column">
+
+
+        <article class="card section-card">
+
+          <div class="section-heading">
+
+            <div>
+              <span class="eyebrow">
+                SOLAR CYCLE
+              </span>
+
+              <h3>
+                Sun tracker
+              </h3>
+            </div>
+
+          </div>
+
+          <div class="sun-visual">
+
+            <div class="sun-arc">
+              <div class="sun-ball">
+                ☀️
+              </div>
+            </div>
+
+          </div>
+
+          <div class="sun-times">
+
+            <div>
+              <span>🌅 Sunrise</span>
+              <strong id="sunrise">--</strong>
+            </div>
+
+            <div>
+              <span>🌇 Sunset</span>
+              <strong id="sunset">--</strong>
+            </div>
+
+          </div>
+
+          <p
+            id="dayLength"
+            class="center-text"
+          >
+            Daylight: --
+          </p>
+
+        </article>
+
+
+        <!-- LOCATION INFO -->
+        <article class="card section-card">
+
+          <div class="section-heading">
+
+            <div>
+              <span class="eyebrow">
+                LOCATION
+              </span>
+
+              <h3>
+                Place information
+              </h3>
+            </div>
+
+          </div>
+
+          <div class="location-details">
+
+            <div>
+              <span>Latitude</span>
+              <strong id="latitude">--</strong>
+            </div>
+
+            <div>
+              <span>Longitude</span>
+              <strong id="longitude">--</strong>
+            </div>
+
+            <div>
+              <span>Timezone</span>
+              <strong id="timezone">--</strong>
+            </div>
+
+            <div>
+              <span>Country</span>
+              <strong id="locationCountry">--</strong>
+            </div>
+
+          </div>
+
+        </article>
+
+      </section>
+
+
+      <!-- =========================
+           FAVORITES
+      ========================== -->
+      <section class="card section-card">
+
+        <div class="section-heading">
+
+          <div>
+            <span class="eyebrow">
+              MY PLACES
+            </span>
+
+            <h3>
+              Favorite cities
+            </h3>
+          </div>
+
+          <button
+            id="clearFavoritesBtn"
+            class="small-btn"
+          >
+            Clear
+          </button>
+
+        </div>
+
+        <div
+          id="favoritesContainer"
+          class="favorites-container"
+        ></div>
+
+      </section>
+
+
+      <!-- =========================
+           RECENT SEARCHES
+      ========================== -->
+      <section class="card section-card">
+
+        <div class="section-heading">
+
+          <div>
+            <span class="eyebrow">
+              HISTORY
+            </span>
+
+            <h3>
+              Recent searches
+            </h3>
+          </div>
+
+          <button
+            id="clearHistoryBtn"
+            class="small-btn"
+          >
+            Clear
+          </button>
+
+        </div>
+
+        <div
+          id="recentContainer"
+          class="recent-container"
+        ></div>
+
+      </section>
+
+
+      <!-- =========================
+           SETTINGS
+      ========================== -->
+      <section class="card section-card settings-section">
+
+        <div class="section-heading">
+
+          <div>
+            <span class="eyebrow">
+              SETTINGS
+            </span>
+
+            <h3>
+              SkyCast preferences
+            </h3>
+          </div>
+
+        </div>
+
+        <div class="settings-grid">
+
+          <button
+            id="settingsUnitBtn"
+            class="setting-btn"
+          >
+            <span>🌡️</span>
+            <div>
+              <strong>Temperature unit</strong>
+              <small id="settingsUnit">
+                Celsius
+              </small>
+            </div>
+          </button>
+
+
+          <button
+            id="settingsThemeBtn"
+            class="setting-btn"
+          >
+            <span>🎨</span>
+            <div>
+              <strong>Appearance</strong>
+              <small id="settingsTheme">
+                Dark
+              </small>
+            </div>
+          </button>
+
+
+          <button
+            id="settingsLocationBtn"
+            class="setting-btn"
+          >
+            <span>📍</span>
+            <div>
+              <strong>Use location</strong>
+              <small>
+                Detect my weather
+              </small>
+            </div>
+          </button>
+
+
+          <button
+            id="settingsRefreshBtn"
+            class="setting-btn"
+          >
+            <span>🔄</span>
+            <div>
+              <strong>Refresh weather</strong>
+              <small>
+                Get latest data
+              </small>
+            </div>
+          </button>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           FOOTER
+      ========================== -->
+      <footer class="footer">
+
+        <div class="footer-brand">
+          ☁️ SkyCast <span>PRO</span>
+        </div>
+
+        <p>
+          Live weather intelligence for the world.
+        </p>
+
+        <small>
+          Weather data provided by OpenWeather.
+        </small>
+
+      </footer>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       LOADING
+  ========================== -->
+  <div
+    id="loading"
+    class="loading-overlay"
+  >
+
+    <div class="loading-box">
+
+      <div class="loader"></div>
+
+      <h3>
+        Reading the sky...
+      </h3>
+
+      <p>
+        Getting live weather data
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       TOAST
+  ========================== -->
+  <div
+    id="toast"
+    class="toast"
+  ></div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+  <script src="script.js"></script>
+
+</body>
+        </html>
